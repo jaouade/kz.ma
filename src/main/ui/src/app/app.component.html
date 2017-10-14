@@ -1,19 +1,14 @@
-<h1>{{title}}</h1>
-<h2>{{hero.name}} details!</h2>
-<div><label>id: </label>{{hero.id}}</div>
-<div>
-  <label>name: </label>
-  <input [(ngModel)]="hero.name" placeholder="name">
+<div *ngIf="selectedImage">
+  <h2>{{selectedImage.link}} details!</h2>
+  <div><label>id: </label>{{selectedImage.id}}</div>
+  <div>
+    <label>name: </label>
+    <input [(ngModel)]="selectedImage.link" placeholder="link"/>
+  </div>
 </div>
-<div>
-  <label>id: </label>
-  <input [(ngModel)]="hero.id" type="number" placeholder="id">
-</div>
-<hr>
-<hr>
-<h2>My Heroes</h2>
+<h2>My pics</h2>
 <ul class="heroes">
-  <li *ngFor="let hero of heroes">
-    <span class="badge">{{hero.id}}</span> {{hero.name}}
+  <li *ngFor="let image of IMAGES" (click)="onSelect(image)" [class.selected]="image === selectedImage"c>
+    <span class="badge">{{image.id}}</span> {{image.link}}
   </li>
 </ul>

@@ -1,19 +1,8 @@
-import { Component } from '@angular/core';
-const HEROES: Hero[] = [
-  { id: 11, name: 'Mr. Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
-];
-export class Hero {
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+export class Image {
   id: number;
-  name: string;
+  link: string;
 }
 
 @Component({
@@ -21,12 +10,26 @@ export class Hero {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  IMAGES;
+
+  // Inject HttpClient into your component or service.
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    // Make the HTTP request:
+    this.http.get('/images').subscribe((data) => {
+      // Read the result field from the JSON response.
+      this.IMAGES = data;
+
+
+    });
+  };
   title = 'Tour of Heroes';
-  heroes = HEROES;
-  hero : Hero = {
-  id: 1,
-  name: 'Windstorm'
-};
+  images = this.IMAGES;
+  selectedImage: Image;
+  onSelect(img: Image): void {
+    this.selectedImage = img;
+  }
 }
 
