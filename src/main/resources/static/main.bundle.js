@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"selectedImage\">\n  <h2>{{selectedImage.link}} details!</h2>\n  <div><label>id: </label>{{selectedImage.id}}</div>\n  <div>\n    <label>name: </label>\n    <input [(ngModel)]=\"selectedImage.link\" placeholder=\"link\"/>\n  </div>\n</div>\n<h2>My pics</h2>\n<ul class=\"heroes\">\n  <li *ngFor=\"let image of IMAGES\" (click)=\"onSelect(image)\" [class.selected]=\"image === selectedImage\"c>\n    <span class=\"badge\">{{image.id}}</span> {{image.link}}\n  </li>\n</ul>\n"
+        module.exports = "<hero-detail [image]=\"selectedImage\"></hero-detail>\n<h2>My pics</h2>\n<ul class=\"heroes\">\n  <li *ngFor=\"let image of IMAGES\" (click)=\"onSelect(image)\" [class.selected]=\"image === selectedImage\"c>\n    <span class=\"badge\">{{image.id}}</span> {{image.link}}\n  </li>\n</ul>\n"
 
 /***/ }),
 
@@ -46,7 +46,6 @@ module.exports = "<div *ngIf=\"selectedImage\">\n  <h2>{{selectedImage.link}} de
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export Image */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
@@ -60,12 +59,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-
-var Image = (function () {
-    function Image() {
-    }
-    return Image;
-}());
 
 var AppComponent = (function () {
     // Inject HttpClient into your component or service.
@@ -82,7 +75,6 @@ var AppComponent = (function () {
             _this.IMAGES = data;
         });
     };
-    ;
     AppComponent.prototype.onSelect = function (img) {
         this.selectedImage = img;
     };
@@ -112,6 +104,8 @@ var _a;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
+        /* harmony import */
+        var __WEBPACK_IMPORTED_MODULE_5__hero_detail_component__ = __webpack_require__("../../../../../src/app/hero-detail.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -121,6 +115,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
  // <-- NgModel lives here
+
 
 
 var AppModule = (function () {
@@ -136,13 +131,89 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["b" /* HttpClientModule */],
         ],
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]
+            __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_5__hero_detail_component__["a" /* HeroDetailComponent */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
 //# sourceMappingURL=app.module.js.map
+
+        /***/
+    }),
+
+    /***/
+    "../../../../../src/app/hero-detail.component.html": /***/ (function (module, exports) {
+
+        module.exports = "<div *ngIf=\"image\">\n  <h2>{{image.link}} details!</h2>\n  <div><label>id: </label>{{image.id}}</div>\n  <div>\n    <label>name: </label>\n    <input [(ngModel)]=\"image.link\" placeholder=\"link\"/>\n  </div>\n</div>\n"
+
+        /***/
+    }),
+
+    /***/
+    "../../../../../src/app/hero-detail.component.ts": /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "a", function () {
+            return HeroDetailComponent;
+        });
+        /* harmony import */
+        var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+        /* harmony import */
+        var __WEBPACK_IMPORTED_MODULE_1__image__ = __webpack_require__("../../../../../src/app/image.ts");
+        var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+                var c = arguments.length,
+                    r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+                if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+                else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+                return c > 3 && r && Object.defineProperty(target, key, r), r;
+            };
+        var __metadata = (this && this.__metadata) || function (k, v) {
+                if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+            };
+
+
+        var HeroDetailComponent = (function () {
+            function HeroDetailComponent() {
+            }
+
+            return HeroDetailComponent;
+        }());
+        __decorate([
+            Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+            __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__image__["a" /* Image */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__image__["a" /* Image */]) === "function" && _a || Object)
+        ], HeroDetailComponent.prototype, "image", void 0);
+        HeroDetailComponent = __decorate([
+            Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+                selector: 'hero-detail',
+                template: __webpack_require__("../../../../../src/app/hero-detail.component.html")
+            })
+        ], HeroDetailComponent);
+
+        var _a;
+//# sourceMappingURL=hero-detail.component.js.map
+
+        /***/
+    }),
+
+    /***/
+    "../../../../../src/app/image.ts": /***/ (function (module, __webpack_exports__, __webpack_require__) {
+
+        "use strict";
+        /* harmony export (binding) */
+        __webpack_require__.d(__webpack_exports__, "a", function () {
+            return Image;
+        });
+        var Image = (function () {
+            function Image() {
+            }
+
+            return Image;
+        }());
+
+//# sourceMappingURL=image.js.map
 
 /***/ }),
 
